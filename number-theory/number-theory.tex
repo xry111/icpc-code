@@ -1,0 +1,71 @@
+\section{数论}
+
+\subsection{中国剩余定理}
+
+解方程组 $x \equiv ans[i] \ (mod \ d[i])$。
+
+\lstinputlisting[language=c++]{number-theory/crt.cc}
+
+\subsection{线性筛}
+
+\lstinputlisting[language=c++]{number-theory/linear-sieve.cc}
+
+\subsection{BSGS}
+
+已知 $a, b, M$，$gcd(a, M) = 1$，解 $a^x \equiv b \ (mod \ M)$。
+
+\lstinputlisting[language=c++]{number-theory/bsgs.cc}
+
+\subsection{扩展 BSGS}
+
+不要求 $gcd(a, M) = 1$。
+
+\lstinputlisting[language=c++]{number-theory/extend-bsgs.cc}
+
+\subsection{Wilson 定理}
+
+$(n-1)! \equiv -1 \ (mod \ n)$，当且仅当 $n$ 是质数。
+例如，可以计算组合数取模。
+
+\lstinputlisting[language=c++]{number-theory/wilson.cc}
+
+\subsection{整除分块}
+
+对于这样的东西
+
+$$\sum_{i=l}^r f(i) g(\lfloor n/i \rfloor)$$
+
+这样的东西，容易看出 $\lfloor n/i \rfloor$ 具有的不同数值的个数是很少的。
+给定一个 $i$，我们可以算出最小的，使得 $\lfloor n/i' \rfloor >
+\lfloor n/i \rfloor$ 的 $i'$：
+
+$$i' = \lfloor n / \lfloor \frac{n}{d} \rfloor \rfloor + 1$$
+
+这就可以分出 $\mathcal{O}(\sqrt{n})$ 块，每一块里面 $g$ 的值都相同，
+只要能对 $f$ 快速求区间和，就能用 $\mathcal{O}(\sqrt{n})$ 的时间算出来。
+
+代码可以参考下面的杜教筛中的求和代码。
+
+\subsection{杜教筛}
+
+用于求 $\sum_{i=1}^n f(i)$，要求 $f(i)$ 是积性的。
+
+原理是首先需要将 $f(x)$ 卷一个 $g(x)$，得到
+
+$$s = \sum_{i=1}^n \sum_{d|i} f(x/d) g(d) =
+\sum_{d=1}^n \sum_{k=1}^{\lfloor n/d \rfloor} f(k) g(d) =
+\sum_{k=1}^n f(k) + \sum_{d=2}^n g(d) \sum_{k=1}^{\lfloor n/d \rfloor}f(k)$$
+
+可见，要求的东西就是
+
+$$s - \sum_{d=2}^n g(d) \sum_{k=1}^{\lfloor n/d \rfloor} f(k)$$
+
+如果 $s$ 和 $g$ 可以比较快地求出来，
+就可以后面的那个东西进行整除分块，递归地算 $f(x)$ 的前缀和。
+这样做时间复杂度是 $\mathcal{O}(n^{3/4})$ 的，
+如果用线性筛预处理前 $\mathcal{O}(\sqrt{n})$ 个前缀和，
+则可以做到 $\mathcal{O}(n^{2/3})$。
+
+下面的例子是筛 $\phi$ 的前缀和。
+
+\lstinputlisting[language=c++]{number-theory/apiadu-sieve.cc}

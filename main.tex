@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\setmainjfont[
+    RawFeature={instance=Regular},
+    BoldFont=Noto Sans CJK SC, 
+    BoldFeatures={RawFeature={instance=Bold}},
+]{Noto Sans CJK SC}
+
+\usepackage{listings}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{amsfonts}
+\newcommand\sectionbreak{\clearpage}
+
+\setmonofont[
+	RawFeature={instance=Regular},
+	BoldFont=Noto Sans Mono,
+	BoldFeatures={RawFeature={instance=Bold}},
+]{Noto Sans Mono}
+
+\lstset{
+	basicstyle=\tt,
+	tabsize=4,
+	numbers=left,
+	numberstyle=\scriptsize\tt
+}
+
+\title{比赛用模板}
+\author{xry111}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\input{flow/flow.tex}
+\input{hld/hld.tex}
+\input{lis/lis.tex}
+\input{manacher/manacher.tex}
+\input{tarjan/tarjan.tex}
+\input{fft/fft.tex}
+\input{pbds/pbds.tex}
+\input{kmp/kmp.tex}
+\input{number-theory/number-theory.tex}
+\input{zhuliu/zhuliu.tex}
+
+\end{document}

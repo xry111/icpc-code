@@ -1,0 +1,24 @@
+\section{基于策略的数据结构}
+
+\subsection{名次树}
+
+\lstinputlisting[language=c++]{pbds/ost.cc}
+
+\subsection{自定义的平衡树}
+
+例：对于动态集合 $S \subset \mathbb{Z} \times \mathbb{Z}$，
+查询 $(u, v) \in S$，使得 $u \geq u_0$，$v$ 尽量小。
+
+\lstinputlisting[language=c++]{pbds/custom-policy.cc}
+
+\subsection{堆优化 Dijkstra}
+
+\lstinputlisting[language=c++]{pbds/heap-dijkstra.cc}
+
+\subsection{合并堆}
+
+\begin{lstlisting}[language=c++]
+pq_t a, b;
+// ...
+a.join(b); // join b into a, and destory b
+\end{lstlisting}

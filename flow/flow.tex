@@ -1,0 +1,49 @@
+\section{网络流与匹配}
+
+\subsection{无权二分匹配}
+
+\subsubsection{匈牙利算法}
+
+匈牙利算法，时间复杂度$\mathcal{O}(VE)$。
+\lstinputlisting[language=c++]{flow/hungary.cc}
+
+\subsubsection{Hopcraft-Karp}
+
+时间复杂度$\mathcal{O}(\sqrt{V}E)$。
+\lstinputlisting[language=c++]{flow/hopcraft-karp.cc}
+
+\subsection{二分图最大权匹配}
+
+时间复杂度 $\mathcal{O}(V^3)$
+
+\lstinputlisting[language=c++]{flow/kuhn-munkres.cc}
+
+\subsection{最大流}
+
+\subsubsection{Highest Label Push-Relabel}
+时间复杂度$\mathcal{O}(V^2 \sqrt{E})$。
+\lstinputlisting[language=c++]{flow/highest-label-push-relabel.cc}
+
+\subsubsection{Dinic}
+时间复杂度$\mathcal{O}(V^2E)$。
+\lstinputlisting[language=c++]{flow/dinic.cc}
+
+\subsection{费用流}
+
+\subsubsection{Edmonds-Karp}
+
+时间复杂度 $\mathcal{O}(fVE)$。
+\lstinputlisting[language=c++]{flow/edmonds-karp.cc}
+
+\subsection{构图}
+
+\subsubsection{二分图最小点权覆盖}
+
+问题：选出$V$的子集$V'$，使E中所有的边都要与$V'$中的点相连，并且$V'$权值和最小。\\
+构图：添加源$s$汇$t$，添加$(s,u,w_u)$和$v,t,w_v$，再加上$(u,v,\infty)$。求出的最大流（最小割）
+就是最小权值和。要找$V'$，需要从$s$开始floodfill，找出割集$S$和$T$。然后对于所有割边，一端点必为$s$或者$t$，另一端点就是$V'$中的点。
+
+\subsubsection{二分图最大点权独立集}
+
+问题：选出$V$的子集$V'$，$V'$中任意两点没有边相连，使$V'$权值和最大。\\
+构图：二分图最小点权覆盖的补集就是答案。
