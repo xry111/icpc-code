@@ -1,4 +1,4 @@
 #!/bin/sh
 
 clang-format -i $(find -name "*.cc")
-lualatex main.tex
+latexmk --lualatex main.tex
