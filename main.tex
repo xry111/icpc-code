@@ -13,6 +13,8 @@
 \usepackage{titlesec}
 \usepackage{amsfonts}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{import}
 \usepackage{indentfirst}
 \setlength\parindent{20pt}
 
@@ -50,5 +52,7 @@
 \input{kmp/kmp.tex}
 \input{number-theory/number-theory.tex}
 \input{zhuliu/zhuliu.tex}
+\graphicspath{{./debug/}}
+\import{./debug}{debug.tex}
 
 \end{document}
