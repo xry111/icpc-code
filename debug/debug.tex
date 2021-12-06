@@ -1,9 +1,9 @@
 \section{调试宏}
 
-用于 GDB 不好用的情况。
+用于 GDB 不好用的情况。不用全打，需要多少写多少。CSP 需要背。
 
-不用全打，需要多少写多少。
-
-CSP 需要背。
+用的时候最好把 \verb|-DDEBUG| 放到命令行，代码里面需要关调试的时候加
+\lstinline|#undef DEBUG|，代码里永远不要出现 \lstinline|#define DEBUG|
+防止交的时候忘删。
 
 \lstinputlisting[language=c++]{debug.cc}
