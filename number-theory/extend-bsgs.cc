@@ -7,8 +7,8 @@ int discrete_log(int a, int b, int M)
 	if (b == 1)
 		return 0;
 
-	int g;
-	if ((g = __gcd(a, M)) == 1)
+	int g = __gcd(a, M);
+	if (g == 1)
 		return BSGS(a, b, M);
 
 	int F = M;
