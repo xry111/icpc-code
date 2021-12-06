@@ -26,11 +26,14 @@
 	BoldFeatures={RawFeature={instance=Bold}},
 ]{Noto Sans Mono}
 
+\newfontfamily\light{Noto Sans Mono}[RawFeature={instance=ExtraLight}]
+
 \lstset{
 	basicstyle=\tt,
 	tabsize=4,
 	numbers=left,
-	numberstyle=\scriptsize\tt
+	numberstyle=\scriptsize\light,
+	commentstyle=\light
 }
 
 \title{比赛用模板}
