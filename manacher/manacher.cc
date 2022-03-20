@@ -10,11 +10,11 @@ void Manacher(const T *s, int len)
 	Ma[l++] = DUMMY2;
 	for (int i = 0; i < len; i++) {
 		Ma[l++] = s[i];
-		Ma[l++] = -2;
+		Ma[l++] = DUMMY2;
 	}
 	Ma[l] = 0;
 	int mx = 0, id = 0;
-	for (int i = 0; i < l; i++) {
+	for (int i = 1; i < l; i++) {
 		Mp[i] = mx > i ? min(Mp[2 * id - i], mx - i) : 1;
 		while (Ma[i + Mp[i]] == Ma[i - Mp[i]])
 			Mp[i]++;
