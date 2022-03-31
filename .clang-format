@@ -5,3 +5,4 @@ UseTab: ForIndentation
 BreakBeforeBraces: Linux
 AlwaysBreakTemplateDeclarations: Yes
 AllowShortFunctionsOnASingleLine: None
+AlignEscapedNewlines: Left

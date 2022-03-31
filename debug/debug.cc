@@ -13,7 +13,6 @@ void _debug(std::pair<U, V> p, const char *d = "")
 	std::cerr << '(' << p.first << ", " << p.second << ')' << d;
 }
 
-// clang-format off
 #define _D(C)                                         \
 	template <class... T>                             \
 	void _debug(const C<T...> &t, const char *d = "") \
@@ -23,7 +22,6 @@ void _debug(std::pair<U, V> p, const char *d = "")
 			_debug(x, ", ");                          \
 		std::cerr << '}';                             \
 	}
-// clang-format on
 
 _D(std::vector)
 _D(std::deque)
@@ -47,7 +45,6 @@ void _debug(T t, U... u)
 	_debug(u...);
 }
 
-// clang-format off
 #define dbg(...)                               \
 	do {                                       \
 		std::cerr << "L" << __LINE__ << ": ["; \
@@ -56,8 +53,6 @@ void _debug(T t, U... u)
 		std::cerr << "]";                      \
 		std::cerr << '\n';                     \
 	} while (0);
-//clang-format on
-
 #else // DEBUG
 #define dbg(...) ((void)0)
 #endif // DEBUG
