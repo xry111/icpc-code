@@ -13,21 +13,21 @@ int dfs(int u)
 {
 	vis[u] = -1;
 	p[u] = a[u] = u;
-	for (vector<E>::iterator it = G[u].begin(); it != G[u].end(); it++) {
-		if (vis[it->v])
+	for (const E &e : G[u]) {
+		if (vis[e.v])
 			continue;
-		e2v[it->id] = it->v;
-		dfs(it->v);
-		int uu = find(u), vv = find(it->v);
+		e2v[e.id] = e.v;
+		dfs(e.v);
+		int uu = find(u), vv = find(e.v);
 		p[vv] = uu;
 		a[uu] = u;
 	}
 	vis[u] = 1;
-	for (vector<Q>::iterator it = q[u].begin(); it != q[u].end(); it++)
-		if (vis[it->v] == 1) {
-			int vv = find(it->v);
-			mark[it->xx][a[vv]] -= it->val + it->val;
-			if (it->xx == 0)
-				mark[2][a[vv]] += it->val;
+	for (const Q &qq : q[u])
+		if (vis[qq.v] == 1) {
+			int vv = find(qq.v);
+			mark[qq.xx][a[vv]] -= qq.val + qq.val;
+			if (qq.xx == 0)
+				mark[2][a[vv]] += qq.val;
 		}
 }

@@ -2,7 +2,6 @@
 
 #if __cplusplus < 201402L
 // constexpr is extremely stupid in C++11
-// and not available in C++03 at all
 #define constexpr const
 #endif
 

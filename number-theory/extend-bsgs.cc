@@ -12,15 +12,13 @@ int discrete_log(int a, int b, int M)
 		return BSGS(a, b, M);
 
 	int F = M;
-	for (vector<int>::iterator it = prime.begin(); it != prime.end(); it++) {
-		int p = *it;
+	for (int p : prime)
 		if (g % p == 0) {
 			while (g % p == 0)
 				g /= p;
 			while (F % p == 0)
 				F /= p;
 		}
-	}
 	if (g != 1)
 		while (F % g == 0)
 			F /= g;

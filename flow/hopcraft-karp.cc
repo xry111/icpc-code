@@ -25,9 +25,7 @@ struct HK {
 		while (!q.empty()) {
 			int u = q.front();
 			q.pop();
-			for (vector<int>::iterator it = G[u].begin(); it != G[u].end();
-			     it++) {
-				int v = *it;
+			for (int v : G[u])
 				if (dis2[v] == 0) {
 					dis2[v] = dis1[u] + 1;
 					if (mate2[v] == -1)
@@ -37,15 +35,13 @@ struct HK {
 						q.push(mate2[v]);
 					}
 				}
-			}
 		}
 		return ret;
 	}
 
 	bool dfs(int u)
 	{
-		for (vector<int>::iterator it = G[u].begin(); it != G[u].end(); it++) {
-			int v = *it;
+		for (int v : G[u])
 			if (dis1[u] + 1 == dis2[v]) {
 				dis2[v] = 0;
 				if (mate2[v] == -1 || dfs(mate2[v])) {
@@ -54,7 +50,6 @@ struct HK {
 					return 1;
 				}
 			}
-		}
 		return 0;
 	}
 

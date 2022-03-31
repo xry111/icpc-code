@@ -91,31 +91,27 @@ struct MaxFlow {
 		while (!Q.empty()) {
 			int u = Q.front();
 			Q.pop();
-			for (typename vector<arc_t>::iterator it = G[u].begin();
-			     it != G[u].end(); it++)
-				if (h[it->v] == N + N) {
-					Q.push(it->v);
-					h[it->v] = h[u] + 1;
-					if (it->v != s)
-						L[h[it->v]].push_back(it->v);
+			for (const arc_t &arc : G[u])
+				if (h[arc.v] == N + N) {
+					Q.push(arc.v);
+					h[arc.v] = h[u] + 1;
+					if (arc.v != s)
+						L[h[arc.v]].push_back(arc.v);
 				}
 		}
 		h[s] = N;
 
 		// Preflow
 		for (int i = 0; i <= N; i++)
-			for (typename vector<arc_t>::iterator it = G[i].begin();
-			     it != G[i].end(); it++)
-				it->f = 0;
-		for (typename vector<arc_t>::iterator it = G[s].begin();
-		     it != G[s].end(); it++) {
-			e[it->v] += it->f = it->c;
-			e[s] -= it->f;
+			for (arc_t &arc : G[i])
+				arc.f = 0;
+		for (const arc_t &arc : G[s]) {
+			e[arc.v] += arc.f = arc.c;
+			e[s] -= arc.f;
 		}
 
 		for (int level = N - 1; level >= 0; level--) {
-			for (list<int>::iterator it = L[level].begin();
-			     it != L[level].end(); it++) {
+			for (auto it = L[level].begin(); it != L[level].end(); it++) {
 				int u = *it;
 				int old = h[u];
 				discharge(u);
@@ -124,9 +120,8 @@ struct MaxFlow {
 					if (level > 0 && L[level].size() == 1) {
 						for (int k = level + 1; k <= N; k++)
 							L[N + 1].splice(L[N + 1].begin(), L[k]);
-						for (list<int>::iterator it = L[N + 1].begin();
-						     it != L[N + 1].end(); it++)
-							h[*it] = N + 1;
+						for (int v : L[N + 1])
+							h[v] = N + 1;
 					}
 					L[h[u]].push_front(u);
 					L[level].erase(it);

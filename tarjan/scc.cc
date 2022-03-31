@@ -4,15 +4,13 @@ void dfs(int u)
 	dfn[u] = low[u] = ++clk;
 	st.push(u);
 	ins[u] = vis[u] = 1;
-	for (vector<int>::iterator it = G[u].begin(); it != G[u].end(); it++) {
-		int v = *it;
+	for (int v : G[u])
 		if (!dfn[v]) {
 			dfs(v);
 			low[u] = min(low[u], low[v]);
 		} else if (ins[v]) {
 			low[u] = min(low[u], dfn[v]);
 		}
-	}
 	if (dfn[u] == low[u]) {
 		// get a scc
 		int v;
