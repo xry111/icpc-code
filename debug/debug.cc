@@ -13,29 +13,31 @@ void _debug(std::pair<U, V> p, const char *d = "")
 	std::cerr << '(' << p.first << ", " << p.second << ')' << d;
 }
 
-#define _D(C)                                         \
-	template <class... T>                             \
-	void _debug(const C<T...> &t, const char *d = "") \
-	{                                                 \
-		std::cerr << '{';                             \
-		for (auto x : t)                              \
-			_debug(x, ", ");                          \
-		std::cerr << '}';                             \
+template <class It>
+void _debug_it(It begin, It end)
+{
+	std::cerr << "{";
+	if (begin != end) {
+		_debug(*begin++);
+		for (; begin != end; begin++) {
+			std::cerr << ", ";
+			_debug(*begin);
+		}
 	}
+	std::cerr << "}";
+}
 
-_D(std::vector)
-_D(std::deque)
-_D(std::list)
-_D(std::set)
-_D(std::multiset)
-_D(std::unordered_set)
-_D(std::unordered_multiset)
-_D(std::map)
-_D(std::multimap)
-_D(std::unordered_map)
-_D(std::unordered_multimap)
+template <template <class T> class C, class T>
+void _debug(const C<T> &t, const char *d = "")
+{
+	_debug_it(t.begin(), t.end());
+}
 
-#undef _D
+template <template <class T, class U> class C, class T, class U>
+void _debug(const C<T, U> &t, const char *d = "")
+{
+	_debug_it(t.begin(), t.end());
+}
 
 template <class T, class... U>
 void _debug(T t, U... u)
@@ -57,6 +59,7 @@ void _debug(T t, U... u)
 #define dbg(...) ((void)0)
 #endif // DEBUG
 
+#ifdef TEST
 int main()
 {
 	dbg(1, 2, "x");
@@ -65,3 +68,4 @@ int main()
 	std::map<int, int> z{{114, 514}, {1919, 810}};
 	dbg(x, y, z);
 }
+#endif
