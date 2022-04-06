@@ -105,7 +105,7 @@ struct MaxFlow {
 		for (int i = 0; i <= N; i++)
 			for (arc_t &arc : G[i])
 				arc.f = 0;
-		for (const arc_t &arc : G[s]) {
+		for (arc_t &arc : G[s]) {
 			e[arc.v] += arc.f = arc.c;
 			e[s] -= arc.f;
 		}
