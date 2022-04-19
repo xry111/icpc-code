@@ -6,6 +6,7 @@
     RawFeature={instance=Regular},
     BoldFont=Noto Sans CJK SC, 
     BoldFeatures={RawFeature={instance=Bold}},
+    Renderer=Harfbuzz,
 ]{Noto Sans CJK SC}
 
 \usepackage{listings}
@@ -24,9 +25,13 @@
 	RawFeature={instance=Regular},
 	BoldFont=Noto Sans Mono,
 	BoldFeatures={RawFeature={instance=Bold}},
+	Renderer=Harfbuzz,
 ]{Noto Sans Mono}
 
-\newfontfamily\light{Noto Sans Mono}[RawFeature={instance=ExtraLight}]
+\newfontfamily\light{Noto Sans Mono}[
+	RawFeature={instance=ExtraLight},
+	Renderer=Harfbuzz,
+]
 
 \lstset{
 	basicstyle=\tt,
