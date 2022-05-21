@@ -1,0 +1,15 @@
+\section{字符串}
+
+\subsection{后缀数组}
+
+$sa(x)$ 是第 $x$ 小的后缀的起始位置，
+$rk(y)$ 是 $y$ 开头的后缀为第几小。
+$sa(rk(x)) = x$。
+
+\lstinputlisting[language=c++]{sa.cc}
+
+\subsection{Manacher 算法}
+
+用来找各个中心点的最长回文子串，时间复杂度 $\mathcal{O}(n)$。
+
+\lstinputlisting[language=c++]{manacher.cc}
