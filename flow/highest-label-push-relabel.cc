@@ -24,7 +24,7 @@ struct MaxFlow {
 		                        : G[u][arc].c - G[u][arc].f;
 	}
 
-	void AddEdge(int u, int v, Int c)
+	void add_edge(int u, int v, Int c)
 	{
 		assert(c > 0);
 		int x = G[u].size();
