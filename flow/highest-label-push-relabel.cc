@@ -113,19 +113,19 @@ struct MaxFlow {
 		for (int level = N - 1; level >= 0; level--) {
 			for (auto it = L[level].begin(); it != L[level].end(); it++) {
 				int u = *it;
-				int old = h[u];
+				assert(h[u] == level);
 				discharge(u);
-				if (h[u] != old) {
+				if (h[u] != level) {
 					// Gap Optimize
-					if (level > 0 && L[level].size() == 1) {
+					L[h[u]].push_front(u);
+					L[level].erase(it);
+					if (level > 0 && L[level].size() == 0) {
 						for (int k = level + 1; k <= N; k++)
 							L[N + 1].splice(L[N + 1].begin(), L[k]);
 						for (int v : L[N + 1])
 							h[v] = N + 1;
 					}
-					L[h[u]].push_front(u);
-					L[level].erase(it);
-					level = h[u];
+					level = h[u] + 1;
 					break;
 				}
 			}
