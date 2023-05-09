@@ -62,11 +62,14 @@ struct MaxFlow {
 	void discharge(int u)
 	{
 		while (e[u] > 0) {
-			int v = G[u][curr[u]].v;
 			if (curr[u] == G[u].size()) {
 				relabel(u);
 				curr[u] = 0;
-			} else if (cf(u, curr[u]) && h[u] == h[v] + 1)
+				continue;
+			}
+
+			int v = G[u][curr[u]].v;
+			if (cf(u, curr[u]) && h[u] == h[v] + 1)
 				push(u, curr[u]);
 			else
 				curr[u]++;
