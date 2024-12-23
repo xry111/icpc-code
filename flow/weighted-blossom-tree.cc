@@ -179,7 +179,7 @@ struct weighted_blossom_tree {
 		fill(sl + 1, sl + 1 + m, 0);
 		h = 1;
 		t = 0;
-		int i, j;
+		int i;
 		for (i = 1; i <= m; i++)
 			if (st[i] == i && !lk[i]) {
 				f[i] = s[i] = 0;
