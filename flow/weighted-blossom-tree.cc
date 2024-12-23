@@ -89,7 +89,7 @@ struct weighted_blossom_tree {
 		}
 		return 0;
 	}
-	void add(int u, int a, int v)
+	void add(int u0, int a, int v)
 	{
 		int x = n + 1, i, j;
 		while (x <= m && st[x])
@@ -100,7 +100,7 @@ struct weighted_blossom_tree {
 		lk[x] = lk[a];
 		p[x].clear();
 		p[x].push_back(a);
-		for (i = u; i != a; i = st[f[j]]) {
+		for (i = u0; i != a; i = st[f[j]]) {
 			p[x].push_back(i);
 			j = st[lk[i]];
 			p[x].push_back(j);
