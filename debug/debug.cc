@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+#define DEBUG
+
 #ifdef DEBUG
 template <class T>
 void _debug(T t, const char *d = "")
