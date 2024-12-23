@@ -31,10 +31,10 @@ struct MaxFlow {
 		while (qf != qe) {
 			int u = que[qf++];
 			for (int i = head[u]; i != -1; i = g[i].next) {
-				Edge &e = g[i];
-				if (g[i ^ 1].cap && dis[e.v] == -1) {
-					dis[e.v] = dis[u] - 1;
-					que[qe++] = e.v;
+				int v = g[i].v;
+				if (g[i ^ 1].cap && dis[v] == -1) {
+					dis[v] = dis[u] - 1;
+					que[qe++] = v;
 				}
 			}
 		}
