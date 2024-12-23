@@ -13,8 +13,7 @@ void change(T *a, int n)
 			j -= k;
 			k /= 2;
 		}
-		if (j < k)
-			j += k;
+		j += k;
 	}
 }
 
