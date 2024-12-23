@@ -189,9 +189,9 @@ struct weighted_blossom_tree {
 			return 0;
 		while (1) {
 			while (h <= t) {
-				int u = q[h++], v;
+				int u = q[h++];
 				if (s[st[u]] != 1)
-					for (v = 1; v <= n; v++)
+					for (int v = 1; v <= n; v++)
 						if (e[u][v].w > 0 && st[u] != st[v]) {
 							if (d(e[u][v]))
 								upd(u, st[v]);
